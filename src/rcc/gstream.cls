@@ -125,7 +125,7 @@ Storage NewStorage1
 <Type>data</Type>
 </SQLMap>
 <StreamLocation>^||rccstream</StreamLocation>
-<Type>%CacheSQLStorage</Type>
+<Type>%Storage.SQL</Type>
 }
 
 }
