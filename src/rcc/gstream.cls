@@ -1,7 +1,5 @@
 Class rcc.gstream Extends %Persistent [ SqlRowIdPrivate, StorageStrategy = NewStorage1 ]
 {
-Class rcc.gstream Extends %Persistent [ SqlRowIdPrivate, StorageStrategy = NewStorage1 ]
-{
 
 Property id As %Integer;
 
