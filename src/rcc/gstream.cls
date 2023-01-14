@@ -95,12 +95,11 @@ ClassMethod loadbin(
   write gbl," loaded",!    
   quit sc1*sc2
 }
-ClassMethod docker()
+ClassMethod docker(dir="/opt/irisbuild/src/data/")
 {
   do ..loadtxt(12890123780237)
   do ..loadtxt("kasöldji=(€**§Eoehjuvphvpheqmnc89w3nkcdnxc(/&Ih")
   do ..loadtxt()
-  set dir="/opt/irisbuild/src/data/"
   for fil="contest","Terry","rcc" do ..loadbin(dir_fil_".jpg")
   for fil="contest.mp3","contest.pdf" do ..loadbin(dir_fil)
 }
