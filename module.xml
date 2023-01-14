@@ -3,11 +3,11 @@
   <Document name="globalstream-to-sql.ZPM">
     <Module>
       <Name>globalstream-to-sql</Name>
-	  <Description>Access GloblaStreams from SQL</Description> 
+	  <Description>Read GloblaStreams from SQL</Description> 
       <Version>0.0.1</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="zrccx.MAC"/>
+      <Resource Name="rcc.PKG"/>
     </Module>
   </Document>
 </Export>
