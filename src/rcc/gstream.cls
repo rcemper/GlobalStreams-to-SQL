@@ -61,6 +61,43 @@ ClassMethod lorem(Output lorem) As %String
   quit lorem
 }
 
+ClassMethod loadtxt(txt = "") As %Status
+{
+  if txt="" set txt=..lorem()
+  set gbl="^txtS"
+  set ch=##class(%Stream.GlobalCharacter).%New()
+      ,ch.%Location=gbl
+  set zip=##class(%Stream.GblChrCompress).%New()
+      ,zip.%Location=gbl
+  for i=1:1:3 do ch.WriteLine(txt),zip.WriteLine(txt)
+  set sc1=ch.%Save()
+      ,sc2=zip.%Save()
+  write gbl," loaded",!    
+  quit sc1*sc2
+}
+
+ClassMethod loadbin(
+	file = "",
+	repeat = 1) As %Status
+{
+  set fs=##class(%Stream.FileBinary).%New()
+  set sc=fs.LinkToFile(file)
+  if sc set sc=fs.Size>0
+  if 'sc quit sc
+  set gbl="^"_$p(file,".",*)_"S"
+  set bin=##class(%Stream.GlobalBinary).%New()
+      ,bin.%Location=gbl
+  set zip=##class(%Stream.GblBinCompress).%New()
+      ,zip.%Location=gbl
+  for i=1:1:repeat {
+    set sc1=bin.CopyFromAndSave(fs)
+    set sc2=zip.CopyFromAndSave(fs)
+    quit:'sc1*sc2
+  }
+  write gbl," loaded",!    
+  quit sc1*sc2
+}
+
 Storage NewStorage1
 {
 <SQLMap name="Map1">
