@@ -18,11 +18,11 @@ but only the embedding Class / Table knows the meaning of the content.
 - %Stream.GlobalBinary - raw binary sequence  
 - %Stream.GblBinCompress - zipped binary sequence  
    
-The Global itself has no indication, of what format it holds.   GlobalStreams-to-SQL
+The Global itself has no indication, of what format it holds.  
 Dumping the Global just helps for raw text, the rest needs special treatment.  
 In combination with SQL you meet the problem of maximum field lengths.  
   
-I cover this issue by mapping all 4 types over the same stream and the user decides.
+I cover this issue by mapping all 4 types over the same stream and the user decides.   
 In addition, the total size and number of subnodes is also available.
 For string manipulation, the first subscript level is also available as "body" VARCHAR
 The Global Stream to examine is provided by a static where clause like this:
@@ -30,7 +30,8 @@ The Global Stream to examine is provided by a static where clause like this:
 select * from rcc.gstream where rcc.use('^txtS')=1
 ```
 ![](https://community.intersystems.com/sites/default/files/inline/images/images/image(5234).png)  
-WinSQL is friendly enough to let you see the full content. eg. for id=1  chr
+WinSQL is friendly enough to let you see the full content.   
+eg. for id=1  chr    
 ![](https://community.intersystems.com/sites/default/files/inline/images/images/image(5235).png)   
 and czip   
 ![](https://community.intersystems.com/sites/default/files/inline/images/images/image(5236).png)  
