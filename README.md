@@ -18,7 +18,7 @@ but only the embedding Class / Table knows the meaning of the content.
 - %Stream.GlobalBinary - raw binary sequence  
 - %Stream.GblBinCompress - zipped binary sequence  
    
-The Global itself has no indication, of what format it holds.   
+The Global itself has no indication, of what format it holds.   GlobalStreams-to-SQL
 Dumping the Global just helps for raw text, the rest needs special treatment.  
 In combination with SQL you meet the problem of maximum field lengths.  
   
@@ -49,13 +49,43 @@ Run the IRIS container with your project:
 ```
 docker-compose up -d --build
 ```
-### How to Test it
+## How to Test it
 ```
 docker-compose exec iris iris session iris
 ```
-or use [Webterminal](http://localhost:42773/terminal/)
-### Example 1 
+or use [Webterminal](http://localhost:42773/terminal/)  
 
+For testing we have to know the names of the Stream Globals  
+I have prepared 3 globals with both flat abnd complessed content in sequence.   
+We load them first:  
+```
+do ##class(rcc.gstream).docker()     
+```
+If not on Docker you may pass the directory containing the demo files as parameter.   
+**^txtS** for long text, **^pdfD** holds a PDF file, **^jpgS** holds some images, **^mp3S** holds sound.  
+the default Stream Global is **^CacheStream** (also in IRIS !)    
+
+The global to display is passed as parameter in a static where clause  
+**....WHERE rRCC:USE('^global_name')=1**   
+this is the init sequence for dynamic switching.   
+
+### Examples
+Use any external SQL Client for testing.   
+I tried SQuirrel, DBeaver, WinSQL.   The last is used in my video.     
+SQLshell() and SMP are unable to handle streams but return the Stream's %OID instead   
+**Test Queries:**       
+```
+SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^txtS')=1
+```
+```
+SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^pdfS')=1
+```
+```
+SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^mp3S')=1
+```
+```
+SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^jpgS')=1
+```
+You can see it in action in my [Video]()
 
 [Article in DC](https://community.intersystems.com/post/global-streams-sql)    
-[Video]()
