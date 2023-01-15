@@ -87,6 +87,6 @@ SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^mp3S')=1
 ```
 SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^jpgS')=1
 ```
-You can see it in action in my [Video]()
+You can see it in action in my [Video](https://youtu.be/YPzdLceFmMg)
 
 [Article in DC](https://community.intersystems.com/post/global-streams-sql)    
