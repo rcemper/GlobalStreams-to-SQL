@@ -3,7 +3,9 @@ Class rcc.gstream Extends %Persistent [ SqlRowIdPrivate, StorageStrategy = NewSt
 
 Property id As %Integer;
 
-Property chunks As %Integer [ ReadOnly ];
+Property nodes As %Integer [ Internal, Private, ReadOnly, ServerOnly = 1 ];
+
+Property chunks As %Integer [ Calculated, SqlComputeCode = {set {*}=+{nodes} }, SqlComputed ];
 
 Property size As %Integer [ ReadOnly ];
 
@@ -29,7 +31,9 @@ ClassMethod use(global = "^CacheStream") As %Integer [ SqlName = use, SqlProc ]
   s id=""
   for  {
     set id=$o(^||rccstream(id)) quit:id=""
-    set ^(id,"id")=id
+    set bin=^(id)
+    if '$d(^(id,0)) set ^(0)=+$p(bin,",",2) 
+    set ^("id")=id
   }
   quit $$$OK
 }
@@ -95,14 +99,7 @@ ClassMethod loadbin(
   write gbl," loaded",!    
   quit sc1*sc2
 }
-ClassMethod docker(dir="/opt/irisbuild/src/data/")
-{
-  do ..loadtxt(12890123780237)
-  do ..loadtxt("kasöldji=(€**§Eoehjuvphvpheqmnc89w3nkcdnxc(/&Ih")
-  do ..loadtxt()
-  for fil="contest","Terry","rcc" do ..loadbin(dir_fil_".jpg")
-  for fil="contest.mp3","contest.pdf" do ..loadbin(dir_fil)
-}
+
 Storage NewStorage1
 {
 <SQLMap name="Map1">
@@ -121,7 +118,7 @@ Storage NewStorage1
 <Data name="czip">
 <Node>"id"</Node>
 </Data>
-<Data name="chunks"/>
+<Data name="nodes"/>
 <Data name="size">
 <Node>0</Node>
 </Data>
