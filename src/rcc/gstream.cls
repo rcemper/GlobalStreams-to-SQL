@@ -3,9 +3,7 @@ Class rcc.gstream Extends %Persistent [ SqlRowIdPrivate, StorageStrategy = NewSt
 
 Property id As %Integer;
 
-Property nodes As %Integer [ Internal, Private, ReadOnly, ServerOnly = 1 ];
-
-Property chunks As %Integer [ Calculated, SqlComputeCode = {set {*}=+{nodes} }, SqlComputed ];
+Property chunks As %Integer [ ReadOnly ];
 
 Property size As %Integer [ ReadOnly ];
 
@@ -28,13 +26,6 @@ ClassMethod use(global = "^CacheStream") As %Integer [ SqlName = use, SqlProc ]
   if '$d(@%rccstream) quit '$$$OK
   kill ^||rccstream
   merge ^||rccstream=@%rccstream
-  s id=""
-  for  {
-    set id=$o(^||rccstream(id)) quit:id=""
-    set bin=^(id)
-    if '$d(^(id,0)) set ^(0)=+$p(bin,",",2) 
-    set ^("id")=id
-  }
   quit $$$OK
 }
 
@@ -71,10 +62,10 @@ ClassMethod loadtxt(txt = "") As %Status
       ,ch.%Location=gbl
   set zip=##class(%Stream.GblChrCompress).%New()
       ,zip.%Location=gbl
-  for i=1:1:3 do ch.WriteLine(txt),zip.WriteLine(txt)
+  for i=1:1:3 do ch.WriteLine(txt) h 1 do zip.WriteLine(txt)
   set sc1=ch.%Save()
       ,sc2=zip.%Save()
-  write gbl," loaded",!    
+  write gbl," loaded ",!    
   quit sc1*sc2
 }
 
@@ -91,12 +82,14 @@ ClassMethod loadbin(
       ,bin.%Location=gbl
   set zip=##class(%Stream.GblBinCompress).%New()
       ,zip.%Location=gbl
+
   for i=1:1:repeat {
-    set sc1=bin.CopyFromAndSave(fs)
+    set sc1=bin.CopyFromAndSave(fs) 
+    do fs.Rewind() h 1
     set sc2=zip.CopyFromAndSave(fs)
     quit:'sc1*sc2
   }
-  write gbl," loaded",!    
+  write gbl," loaded with ",file,! h 2 
   quit sc1*sc2
 }
 
@@ -114,23 +107,25 @@ Storage NewStorage1
 {
 <SQLMap name="Map1">
 <Data name="bin">
-<Node>"id"</Node>
+<RetrievalCode>set {*}={L1}</RetrievalCode>
 </Data>
 <Data name="body">
 <Node>1</Node>
 </Data>
 <Data name="bzip">
-<Node>"id"</Node>
+<RetrievalCode>set {*}={L1}</RetrievalCode>
 </Data>
 <Data name="chr">
-<Node>"id"</Node>
+<RetrievalCode>set {*}={L1}</RetrievalCode>
+</Data>
+<Data name="chunks">
+<RetrievalCode>set {*}=+$g(^||rccstream({L1}))</RetrievalCode>
 </Data>
 <Data name="czip">
-<Node>"id"</Node>
+<RetrievalCode>set {*}={L1}</RetrievalCode>
 </Data>
-<Data name="nodes"/>
 <Data name="size">
-<Node>0</Node>
+<RetrievalCode>if '$d(^||rccstream({L1},0),{*}) set {*}=$p(^||rccstream({L1}),",",2)</RetrievalCode>
 </Data>
 <Global>^||rccstream</Global>
 <Subscript name="1">
