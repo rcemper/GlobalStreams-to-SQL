@@ -3,7 +3,7 @@ Class rcc.gstream Extends %Persistent [ SqlRowIdPrivate, StorageStrategy = NewSt
 
 Property id As %Integer;
 
-Property junks As %Integer [ ReadOnly ];
+Property chunks As %Integer [ ReadOnly ];
 
 Property size As %Integer [ ReadOnly ];
 
@@ -121,7 +121,7 @@ Storage NewStorage1
 <Data name="czip">
 <Node>"id"</Node>
 </Data>
-<Data name="junks"/>
+<Data name="chunks"/>
 <Data name="size">
 <Node>0</Node>
 </Data>
