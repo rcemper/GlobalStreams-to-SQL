@@ -100,6 +100,16 @@ ClassMethod loadbin(
   quit sc1*sc2
 }
 
+ClassMethod docker(dir = "/opt/irisbuild/src/data/")
+{
+  kill ^txtS,^jpgS,^mp3S,^pdfS
+  do ..loadtxt(12890123780237)
+  do ..loadtxt("kasöldji=(€**§Eoehjuvphvpheqmnc89w3nkcdnxc(/&Ih")
+  do ..loadtxt()
+  for fil="contest","Terry","rcc" do ..loadbin(dir_fil_".jpg")
+  for fil="contest.mp3","contest.pdf" do ..loadbin(dir_fil)
+}
+
 Storage NewStorage1
 {
 <SQLMap name="Map1">
