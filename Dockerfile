@@ -1,4 +1,4 @@
-ARG IMAGE=intersystemsdc/iris-community:2022.2.0.368.0
+ARG IMAGE=intersystemsdc/iris-community
 FROM $IMAGE
 USER root
 WORKDIR /opt/irisbuild
