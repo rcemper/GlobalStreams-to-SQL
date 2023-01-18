@@ -21,12 +21,8 @@ Index idx On id [ IdKey ];
 
 ClassMethod use(global = "^CacheStream") As %Integer [ SqlName = use, SqlProc ]
 {
-  new %rccstream
   set %rccstream=global
-  if '$d(@%rccstream) quit '$$$OK
-  kill ^||rccstream
-  merge ^||rccstream=@%rccstream
-  quit $$$OK
+  quit ''$d(@%rccstream)
 }
 
 ClassMethod lorem(Output lorem) As %String
@@ -110,7 +106,7 @@ Storage NewStorage1
 <RetrievalCode>set {*}={L1}</RetrievalCode>
 </Data>
 <Data name="body">
-<Node>1</Node>
+<RetrievalCode>set {*}=@%rccstream@({L1},1)</RetrievalCode>
 </Data>
 <Data name="bzip">
 <RetrievalCode>set {*}={L1}</RetrievalCode>
@@ -119,21 +115,21 @@ Storage NewStorage1
 <RetrievalCode>set {*}={L1}</RetrievalCode>
 </Data>
 <Data name="chunks">
-<RetrievalCode>set {*}=+$g(^||rccstream({L1}))</RetrievalCode>
+<RetrievalCode>set {*}=+$g(@%rccstream@({L1}))</RetrievalCode>
 </Data>
 <Data name="czip">
 <RetrievalCode>set {*}={L1}</RetrievalCode>
 </Data>
 <Data name="size">
-<RetrievalCode>if '$d(^||rccstream({L1},0),{*}) set {*}=$p(^||rccstream({L1}),",",2)</RetrievalCode>
+<RetrievalCode>if '$d(@%rccstream@({L1},0),{*}) set {*}=$p(@%rccstream@({L1}),",",2)</RetrievalCode>
 </Data>
-<Global>^||rccstream</Global>
+<Global>@%rccstream@</Global>
 <Subscript name="1">
 <Expression>{id}</Expression>
 </Subscript>
 <Type>data</Type>
 </SQLMap>
-<StreamLocation>^||rccstream</StreamLocation>
+<StreamLocation>@%rccstream</StreamLocation>
 <Type>%Storage.SQL</Type>
 }
 
