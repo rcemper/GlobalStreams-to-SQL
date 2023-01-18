@@ -63,7 +63,7 @@ We load them first:
 do ##class(rcc.gstream).docker()     
 ```
 If not on Docker you may pass the directory containing the demo files as parameter.   
-**^txtS** for long text, **^pdfD** holds a PDF file, **^jpgS** holds some images, **^mp3S** holds sound.  
+**^txtS** for long text, **^pdfS** holds a PDF file, **^jpgS** holds some images, **^mp3S** holds sound.  
 the default Stream Global is **^CacheStream** (also in IRIS !)    
 
 The global to display is passed as parameter in a static where clause  
