@@ -66,8 +66,8 @@ If not on Docker you may pass the directory containing the demo files as paramet
 **^txtS** for long text, **^pdfS** holds a PDF file, **^jpgS** holds some images, **^mp3S** holds sound.  
 the default Stream Global is **^CacheStream** (also in IRIS !)    
 
-The global to display is passed as parameter in a static where clause  
-**....WHERE rRCC:USE('^global_name')=1**   
+The global to display is passed as parameter in a static WHERE clause  
+**....WHERE RCC.USE('^global_name')=1**   
 this is the init sequence for dynamic switching.   
 
 ### Examples
