@@ -99,7 +99,7 @@ ClassMethod docker(dir = "/opt/irisbuild/src/data/")
   do ..loadtxt(12890123780237)
   do ..loadtxt("kasöldji=(€**§Eoehjuvphvpheqmnc89w3nkcdnxc(/&Ih")
   do ..loadtxt()
-  for fil="contest","Terry","homer","rcc" do ..loadbin(dir_fil_".jpg")
+  for fil="contest","logo","Terry","homer","rcc" do ..loadbin(dir_fil_".jpg")
   for fil="contest.mp3","contest.pdf" do ..loadbin(dir_fil)
 }
 
