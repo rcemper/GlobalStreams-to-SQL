@@ -51,19 +51,27 @@ Run the IRIS container with your project:
 docker-compose up -d --build
 ```
 ## How to Test it
+
+First, you may check the UnitTest running during installation   
+http://localhost:42773/csp/sys/%25UnitTest.Portal.Indices.cls?Index=1&$NAMESPACE=USER
+
+Then,
 ```
 docker-compose exec iris iris session iris
 ```
 or use [Webterminal](http://localhost:42773/terminal/)  
 
 For testing we have to know the names of the Stream Globals  
-I have prepared 3 globals with both flat abnd complessed content in sequence.   
-We load them first:  
+I have prepared 4 globals with both flat abnd complessed content in sequence.   
+We load them first:  ^txtS,^jpgS,^mp3S,^pdfS    
 ```
 do ##class(rcc.gstream).docker()     
 ```
 If not on Docker you may pass the directory containing the demo files as parameter.   
-**^txtS** for long text, **^pdfS** holds a PDF file, **^jpgS** holds some images, **^mp3S** holds sound.  
+- **^txtS** for long text,     
+- **^pdfS** holds a PDF file,   
+- **^jpgS** holds some images,   
+- **^mp3S** holds sound.  
 the default Stream Global is **^CacheStream** (also in IRIS !)    
 
 The global to display is passed as parameter in a static WHERE clause  
