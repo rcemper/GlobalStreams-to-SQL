@@ -8,6 +8,7 @@
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="rcc.PKG"/>
+      <UnitTest Name="/src" Package="rcc.unittests" Phase="test"/>
     </Module>
   </Document>
 </Export>
