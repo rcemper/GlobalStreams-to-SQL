@@ -3,4 +3,6 @@ Do ##class(Security.Users).UnExpireUserPasswords("*")
 zn "USER"
 zpm "install webterminal"
 zpm "load /opt/irisbuild/ -v":1
+set ^UnitTestRoot="/opt/irisbuild/src/rcc/unittests/"
+do ##class(%UnitTest.Manager).RunTest()
 halt
