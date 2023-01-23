@@ -24,8 +24,8 @@ Method TestLoad() As %Status
 
 Method TestMap() As %Status
 {
-  set new=##class(rcc.gstream).%New()
-  do new.use("^||UnitTestS")
+  set nw=##class(rcc.gstream).%New()
+  do nw.use("^||UnitTestS")
   set obj=new.%OpenId(1)
   Do $$$AssertEquals(obj.size, 1379)
 }
@@ -42,8 +42,8 @@ Method TestQuery() As %Status
 
 Method TestMapT() As %Status
 {
-  set new=##class(rcc.gstreamT).%New()
-  do new.use("^||UnitTestS")
+  set nw=##class(rcc.gstreamT).%New()
+  do nw.use("^||UnitTestS")
   set obj=new.%OpenId(1)
   Do $$$AssertEquals(obj.size, 1379)
 }
