@@ -10,7 +10,7 @@ env:
   # Change this section according to your needs
   IMAGE_NAME:   globalstreams-to-sql
   SERVICE:      globalstreams-to-sql
-  DOMAIN_NAME:  globalstreams-to-sql.community.intersystems.com
+  DOMAIN_NAME:  globalstreams-to-sql.demo.community.intersystems.com
 
   # Leave this section untouched
   PROJECT_ID:   iris-community-demos
