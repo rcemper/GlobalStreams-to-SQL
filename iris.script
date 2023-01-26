@@ -5,4 +5,5 @@ zpm "install webterminal"
 zpm "load /opt/irisbuild/ -v":1
 set ^UnitTestRoot="/opt/irisbuild/src/rcc/unittests/"
 do ##class(%UnitTest.Manager).RunTest()
+hang 2
 halt
