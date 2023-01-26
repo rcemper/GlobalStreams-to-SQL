@@ -97,4 +97,8 @@ SELECT * FROM RCC.GSTREAM WHERE RCC.USE('^jpgS')=1
 ```
 You can see it in action in my [Video](https://youtu.be/YPzdLceFmMg)
 
-[Article in DC](https://community.intersystems.com/post/global-streams-sql)    
+[Article in DC](https://community.intersystems.com/post/global-streams-sql)
+
+[Online Demo](https://globalstreams-to-sql.demo.community.intersystems.com/csp/sys/UtilHome.csp)   
+[Online Terminal](https://globalstreams-to-sql.demo.community.intersystems.com/terminal/)   
+
