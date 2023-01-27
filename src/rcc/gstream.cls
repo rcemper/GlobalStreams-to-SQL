@@ -49,7 +49,16 @@ ClassMethod lorem(Output lorem) As %String
             "amico dit me que Occidental es."
   quit lorem
 }
-
+/// dump stream
+ClassMethod dumps(oid As %String) As %List [ SqlName = dumps, SqlProc ]
+{
+  set nl=$s($io["TCP|":"<br>",1:$c(13,10))
+  write nl,"********** Stream Dump **********",nl,nl
+  set str=##class(%Stream.Object).%Open(oid)
+  set sc=str.OutputToDevice()
+  write nl,"************** End **************",nl,nl
+  quit oid
+}
 ClassMethod loadtxt(txt = "") As %Status
 {
   if txt="" set txt=..lorem()
