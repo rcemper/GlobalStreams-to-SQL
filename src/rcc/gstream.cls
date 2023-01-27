@@ -55,8 +55,8 @@ ClassMethod dumps(oid As %String) As %List [ SqlName = dumps, SqlProc ]
   set nl=$s($io["TCP|":"<br>",1:$c(13,10))
   write nl,"********** Stream Dump **********",nl,nl
   set str=##class(%Stream.Object).%Open(oid)
-  set sc=str.OutputToDevice()
-  write nl,"************** End **************",nl,nl
+  do str.OutputToDevice()
+  write nl,nl,"************** End **************",nl,nl
   quit oid
 }
 ClassMethod loadtxt(txt = "") As %Status
