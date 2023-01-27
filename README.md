@@ -65,8 +65,10 @@ For testing we have to know the names of the Stream Globals
 I have prepared 4 globals with both flat abnd complessed content in sequence.   
 We load them first:  ^txtS,^jpgS,^mp3S,^pdfS    
 ```
-do ##class(rcc.gstream).docker()     
-```
+do ##class(rcc.gstream).docker(<stream data directory>)     
+```   
+This step is already intergrated in Docker build.
+
 If not on Docker you may pass the directory containing the demo files as parameter.   
 - **^txtS** for long text,     
 - **^pdfS** holds a PDF file,   
